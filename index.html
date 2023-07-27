@@ -11,95 +11,311 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Logo_de_la_BUAP.svg/800px-Logo_de_la_BUAP.svg.png"
+                    alt="" height="80">
+                Universidad de la Cruz
+            </a>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Universidad</h1>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Comunícate con nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="cerrarSesion()">Cerrar sesión</a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
 
+    <section id="login">
+        <div class="card text-center" id="loginAlumnos">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="true" href="#" onclick="loginStudent()">Alumnos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="loginProfesor()">Profesores</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <h4 class="mb-4">Iniciar Sesión como Alumno</h4>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="addon-wrapping">@</span>
+                    <input type="text" class="form-control" placeholder="matrícula" aria-label="matrícula"
+                        aria-describedby="addon-wrapping">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="addon-wrapping">🔓</span>
+                    <input type="password" class="form-control" placeholder="contraseña" aria-label="contraseña"
+                        aria-describedby="addon-wrapping">
+                </div>
+                <a href="#" class="btn btn-primary" onclick="loginToStudent()">Iniciar Sesión</a>
+            </div>
+
+        </div>
+
+        <div class="card text-center" id="loginProfesores">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="true" href="#" onclick="loginStudent()">Alumnos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="loginProfesor()">Profesores</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <h4 class="mb-4">Iniciar Sesión como Profesor</h4>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="addon-wrapping">@</span>
+                    <input type="text" class="form-control" placeholder="matrícula" aria-label="matrícula"
+                        aria-describedby="addon-wrapping">
+                </div>
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="addon-wrapping">🔓</span>
+                    <input type="password" class="form-control" placeholder="contraseña" aria-label="contraseña"
+                        aria-describedby="addon-wrapping">
+                </div>
+                <a href="#" class="btn btn-primary" onclick="loginToProfesors()">Iniciar Sesión</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="alumnos" class="scrollable-content">
+        <div class="container">
+
+            <div class="row" id="tableStuden">
+                <div class="col">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">email</th>
+                                <th scope="col">boleta</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listStudents">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row" id="container-student">
+                                <div class="col mb-5">Agregar Alumno</div>
+                                <div class="col">
+                                    <form action="https://universidad-backend.onrender.com/agregarAlumno" method="post">
+
+                                        <div class="row g-3 align-items-center mt-2">
+
+                                            <div class="col-auto">
+                                                <label for="inputPassword6" class="col-form-label">Nombre</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <input type="text" name="name" placeholder="nombre alumno"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 align-items-center mt-2">
+                                            <div class="col-auto">
+                                                <label for="inputPassword6" class="col-form-label">Boleta</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <input type="number" name="boleta" placeholder="numero de boleta"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row g-3 align-items-center mt-2">
+                                            <div class="col-auto">
+                                                <label for="inputPassword6" class="col-form-label">email</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <input type="text" name="email" placeholder="email"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <label for="mateia">Materias</label>
+                                        <select name="materia" id="selecter-materias">
+                                            <option value=""> ...</option>
+                                        </select>
+                                        <input type="text" name="materia" placeholder="materia">
+                                        <input type="text" name="calificacion" placeholder="calificacion">
+                                        <input type="text" name="profesor" placeholder="profe">
+                                        <input type="text" name="horario" placeholder="horario">
+
+                                        <button></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" type="button" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row mt-5 mb-5">
             <div class="col">
-                <button class="button btn-warning" onclick="showStudents()">Listar Alumnos</button>
-                <button class="button btn-success" onclick="showForm()">Agregar alumno</button>
+                <!-- <button type="button" class="btn btn-primary" onclick="showStudents()">Listar Alumnos</button> -->
+                <!-- <button class="button btn-success" onclick="showForm()">Agregar alumno</button> -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Agregar Alumno por modal
+                </button>
             </div>
         </div>
 
-        <div class="row" id="tableStuden">
+        <!-- Button trigger modal desde Js-->
+
+        <!-- Modal -->
+        <div id="containerModal"></div>
+    </section>
+
+    <section id="profesores" class="scrollable-content">
+        <div class="container">
+
+            <div class="row" id="tableProfesors">
+                <div class="col">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Campus</th>
+                                <th scope="col">Facultad</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="listProfesors">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row" id="container-profesor">
+                                <div class="col mb-5">Agregar Alumno</div>
+                                <div class="col">
+                                    <form action="https://universidad-backend.onrender.com/agregarAlumno" method="post">
+
+                                        <div class="row g-3 align-items-center mt-2">
+
+                                            <div class="col-auto">
+                                                <label for="inputPassword6" class="col-form-label">Nombre</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <input type="text" name="name" placeholder="nombre alumno"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3 align-items-center mt-2">
+                                            <div class="col-auto">
+                                                <label for="inputPassword6" class="col-form-label">Boleta</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <input type="number" name="boleta" placeholder="numero de boleta"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row g-3 align-items-center mt-2">
+                                            <div class="col-auto">
+                                                <label for="inputPassword6" class="col-form-label">email</label>
+                                            </div>
+                                            <div class="col-auto">
+                                                <input type="text" name="email" placeholder="email"
+                                                    class="form-control">
+                                            </div>
+                                        </div>
+
+                                        <label for="mateia">Materias</label>
+                                        <select name="materia" id="selecter-materias">
+                                            <option value=""> ...</option>
+                                        </select>
+                                        <input type="text" name="materia" placeholder="materia">
+                                        <input type="text" name="calificacion" placeholder="calificacion">
+                                        <input type="text" name="profesor" placeholder="profe">
+                                        <input type="text" name="horario" placeholder="horario">
+
+                                        <button></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" type="button" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 mb-5">
             <div class="col">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">email</th>
-                            <th scope="col">boleta</th>
-                        </tr>
-                    </thead>
-                    <tbody id="listStudents">
-
-                    </tbody>
-                </table>
+                <!-- <button type="button" class="btn btn-primary" onclick="showStudents()">Listar Alumnos</button> -->
+                <!-- <button class="button btn-success" onclick="showForm()">Agregar alumno</button> -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Agregar Profesor por modal
+                </button>
             </div>
         </div>
+        <!-- Button trigger modal desde Js-->
 
-        <div class="row" id="container-student">
-            <div class="col mb-5">Agregar Alumno</div>
-            <div class="col">
-                <form action="http://localhost:3000/agregarAlumno" method="post">
-
-                    <div class="row g-3 align-items-center mt-2">
-
-                        <div class="col-auto">
-                            <label for="inputPassword6" class="col-form-label">Nombre</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" name="name" placeholder="nombre alumno" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="row g-3 align-items-center mt-2">
-                        <div class="col-auto">
-                            <label for="inputPassword6" class="col-form-label">Boleta</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="number" name="boleta" placeholder="numerop de boleta" class="form-control">
-                        </div>
-                    </div>
-
-
-                    <div class="row g-3 align-items-center mt-2">
-                        <div class="col-auto">
-                            <label for="inputPassword6" class="col-form-label">email</label>
-                        </div>
-                        <div class="col-auto">
-                            <input type="text" name="email" placeholder="email" class="form-control">
-                        </div>
-                    </div>
+        <!-- Modal -->
+        <div id="containerModalProfesor"></div>
+    </section>
 
 
 
-
-                    <label for="mateia">Materias</label>
-                    <select name="materia" id="selecter-materias">
-                        <option value=""> ...</option>
-                    </select>
-                    <input type="text" name="materia" placeholder="materia">
-                    <input type="text" name="calificacion" placeholder="calificacion">
-                    <input type="text" name="profesor" placeholder="profe">
-                    <input type="text" name="horario" placeholder="horario">
-
-                    <button type="submit">Enviar</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Button trigger modal desde Js-->
-  
-  <!-- Modal -->
-  <div id="containerModal"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"

@@ -1,7 +1,28 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 body {
-    background-color: grey;
+   overflow: hidden; /* Evita que el body tenga scroll */
+}
+
+.scrollable-content {
+  margin-top: 110px;
+  max-height: calc(100vh - 80px); /* Ajusta la altura máxima del div scrollable (resta el tamaño del navbar) */
+  overflow-y: auto; /* Agrega scroll solo si el contenido excede la altura máxima */
+}
+#login{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image:url(https://www.itl.cat/pngfile/big/135-1356842_imagen-de-universidad-de-concepcin-es-oficialmente-university.jpg);
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#loginProfesores {
+  display: none;
 }
