@@ -50,6 +50,7 @@ function showAlumnos(array) {
              <p>email: ${item.email}</p>
                <p>Boleta: ${item.boleta}</p>
                <p>Materia: ${item.materias[0].name}</p>
+               <p>Calificación: ${item.materias[0].calificacion}</p>
              </div>
              <div class="modal-footer">
                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -148,7 +149,7 @@ function loginToStudent() {
   const login = document.getElementById("login")
 
   sectionProfessors.style.display = "none";
-  sectionStudent.style.display = "block"; // Opcional, si deseas mostrar la sección de estudiantes
+  sectionStudent.style.display = "block";
   login.style.display = "none";
 
 }
